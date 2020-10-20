@@ -1,31 +1,39 @@
 import java.lang.Thread;
+import java.util.Random;
 import java.util.concurrent.Semaphore;
+import java.util.concurrent.TimeUnit;
 
 public class Waiter extends Thread {
 
 
-    private volatile Semaphore Nap = new Semaphore(0);
-    private static int custCount = 0;
+    private volatile Semaphore Nap;
+    private volatile Semaphore Servicing;
+    //  private static int custCount = 0;
 
 
-
-    public Waiter(Semaphore Nap, Semaphore Servicing, ThreadGroup onject) {
+    public Waiter(Semaphore Nap, Semaphore Servicing) {
+        Nap = Nap;
+        Servicing = Servicing;
 
     }
 
 
 
-    @Override
-    public void run(){
-        try{
-            System.out.println("Waiter is Running!!!");
-            if(Nap.tryAcquire()){
 
+    public void run(){
+
+        do {
+            try{
+                Random dice = new Random();
+                int sleepDuration = 50 + dice.nextInt(450);
+
+                if(!Nap.tryAcquire(sleepDuration, TimeUnit.MILLISECONDS)){
+                    Nap.acquire();
+                }
+            }catch(InterruptedException e) {
+                e.printStackTrace();
             }
 
-        }
-        catch(Exception e){
-            System.out.println(e + "\nThere was an error when the Waiter run() method was trying to run.");
-        }
+        }while(true);
     }
 }
