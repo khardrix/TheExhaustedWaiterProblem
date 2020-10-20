@@ -14,11 +14,15 @@ public class Customer extends Thread {
         this.Door = Door;
     }
 
-    // @Override
+
     public void run() {
-        Nap.release();
-        // Servicing.acquire();
-        Door.release();
+        try {
+            Nap.release();
+            Servicing.acquire();
+            Door.release();
+        } catch (Exception e) {
+            System.out.println(e);
+        }
     }
 }
 
