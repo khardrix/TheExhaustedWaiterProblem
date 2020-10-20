@@ -11,15 +11,6 @@ public class Driver {
     volatile static Semaphore Nap = new Semaphore(0, true);
     volatile static Semaphore Servicing = new Semaphore(0, true);
 
-    private int seats = 15;
-
-
-
-
-
-
-
-
 
     public static void main(String[] args) {
 
@@ -33,12 +24,29 @@ public class Driver {
             customer[i] = new Customer(Door, Nap, Servicing, rushHour);
         }
 
-        for(int i = 50; i < 99; i++){
+        for(int i = 50; i < 100; i++){
             customer[i] = new Customer(Door, Nap, Servicing, showTime);
         }
 
+        // prompt user
 
+        try {
+            Waiter waiter = new Waiter(Nap, Servicing);
 
+            waiter.start();
 
+            Thread.sleep(1000);
+        } catch (Exception e){
+            System.out.println(e);
+        }
+
+        for(int i = 0; i < 50; i++){
+            customer[i].start();
+        }
+
+        while(rushHour.activeCount() > 0){
+        }
+
+        // prompt user
     }
 }

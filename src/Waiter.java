@@ -19,8 +19,8 @@ public class Waiter extends Thread {
             try{
                 if(!Nap.tryAcquire()){
                     Nap.acquire();
-                    sleep(sleepDuration);
-                    Servicing.release();
+                    sleep(sleepDuration);   // may need moved out of if statement
+                    Servicing.release();    // may need moved out of if statement
                 }
             }catch(Exception e) {
                 System.out.println(e);
