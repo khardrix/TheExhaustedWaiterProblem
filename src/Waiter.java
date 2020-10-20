@@ -21,7 +21,7 @@ public class Waiter extends Thread {
                     Nap.acquire();
                     sleep(sleepDuration);
                     Servicing.release();
-            }
+                }
             }catch(Exception e) {
                 System.out.println(e);
             }
