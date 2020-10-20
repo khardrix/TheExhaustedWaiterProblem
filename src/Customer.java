@@ -27,7 +27,10 @@ public class Customer extends Thread {
 
     @Override
     public void run() {
+        Nap.release();
 
+        Servicing.tryAcquire();
 
+        Door.release();
     }
 }
