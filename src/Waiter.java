@@ -22,8 +22,8 @@ public class Waiter extends Thread {
                     sleep(sleepDuration);
                     Servicing.release();
             }
-            }catch(InterruptedException e) {
-                e.printStackTrace();
+            }catch(Exception e) {
+                System.out.println(e);
             }
         }while(true);
     }
