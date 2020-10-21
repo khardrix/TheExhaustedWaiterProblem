@@ -17,11 +17,12 @@ public class Waiter extends Thread {
         int sleepDuration = 50 + dice.nextInt(450);
         do {
             try{
-                if(!Nap.tryAcquire()){
+                if(!Nap.tryAcquire()) {
                     Nap.acquire();
-                    sleep(sleepDuration);   // may need moved out of if statement
-                    Servicing.release();    // may need moved out of if statement
                 }
+                sleep(sleepDuration);
+                Servicing.release();
+
             }catch(Exception e) {
                 System.out.println(e);
             }
