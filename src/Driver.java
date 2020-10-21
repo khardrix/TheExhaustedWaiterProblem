@@ -1,4 +1,6 @@
 // IMPORTS of needed Java tools and olus-ins
+import javafx.scene.input.KeyCode;
+
 import java.util.*;
 import java.util.concurrent.Semaphore;
 
@@ -7,20 +9,21 @@ import java.util.concurrent.Semaphore;
 public class Driver {
 
     // Create three class-level Semaphore variables
-    volatile static Semaphore Door = new Semaphore(15, true);
-    volatile static Semaphore Nap = new Semaphore(0, true);
-    volatile static Semaphore Servicing = new Semaphore(0, true);
-    private static ThreadGroup rushhour, slowtime;
+    volatile static Semaphore Door, Nap, Servicing;
 
 
     public static void main(String[] args) {
-        rushhour = new ThreadGroup("rushHour");
-        slowtime = new ThreadGroup("slowtime");
+        Door = new Semaphore(15, true);
+        Nap = new Semaphore(0, true);
+        Servicing = new Semaphore(0, true);
 
-        Customer [] customer = new Customer[100];
+        ThreadGroup rushhour = new ThreadGroup("rushHour");
+        ThreadGroup slowtime = new ThreadGroup("slowtime");
+
         Random randomNumberGenerator = new Random();
         Scanner scanner = new Scanner(System.in);
 
+        Customer [] customer = new Customer[100];
 
 
         for(int i = 0; i < 50; i++){
@@ -31,10 +34,13 @@ public class Driver {
             customer[i] = new Customer(Door, Nap, Servicing, slowtime);
         }
 
-        // prompt user
+        System.out.println("Hit [ENTER] to start the \"rushhour\" simulation: ");
+        String response = scanner.nextLine();
+
+        Waiter waiter = new Waiter(Nap, Servicing);
 
         try {
-            Waiter waiter = new Waiter(Nap, Servicing);
+            // Waiter waiter = new Waiter(Nap, Servicing);
 
             waiter.start();
 
@@ -50,6 +56,11 @@ public class Driver {
         while(rushhour.activeCount() > 0){
         }
 
+
+
+
         // prompt user
+        System.out.println("Press [ENTER] to start the \"slowtime\" simulation:");
+        response = scanner.nextLine();
     }
 }
