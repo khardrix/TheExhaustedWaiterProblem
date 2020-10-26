@@ -14,8 +14,8 @@ public class Waiter extends Thread {
 
     public void run(){
         Random dice = new Random();
-        int sleepDuration = 50 + dice.nextInt(450);
         do {
+            int sleepDuration = 50 + dice.nextInt(450);
             try{
                 if(!Nap.tryAcquire()) {
                     Nap.acquire();

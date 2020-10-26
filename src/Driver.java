@@ -28,11 +28,11 @@ public class Driver {
 
 
         for(int i = 0; i < 50; i++){
-            customer[i] = new Customer(Door, Nap, Servicing, rushhour);
+            customer[i] = new Customer(Nap, Servicing, Door, rushhour);
         }
 
         for(int i = 50; i < 100; i++){
-            customer[i] = new Customer(Door, Nap, Servicing, slowtime);
+            customer[i] = new Customer(Nap, Servicing, Door, slowtime);
         }
 
         System.out.println("Hit [ENTER] to start the \"rushhour\" simulation: ");

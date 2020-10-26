@@ -8,7 +8,7 @@ public class Customer extends Thread {
     private volatile Semaphore Servicing;
 
     public Customer (Semaphore Nap, Semaphore Servicing, Semaphore Door, ThreadGroup threadGroup) {
-        super(threadGroup, null, null);
+        super(threadGroup, "customer");
         this.Nap = Nap;
         this.Servicing = Servicing;
         this.Door = Door;
@@ -17,6 +17,7 @@ public class Customer extends Thread {
 
     public void run() {
         try {
+            Door.acquire();
             Nap.release();
             Servicing.acquire();
             Door.release();
