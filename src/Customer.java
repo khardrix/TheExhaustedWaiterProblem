@@ -20,10 +20,18 @@ public class Customer extends Thread {
 
     public void run() {
         try {
+            System.out.println("Customer attempting to enter restaurant");
             Door.acquire();
+            System.out.println("Customer " + (custCount + 1) + " has entered restaurant and is seated");
+            System.out.println("Customer" + (custCount + 1) +  "is waiting for the waiter");
             Nap.release();
+            countmutex.acquire();
+            custCount++;
+            countmutex.release();
             Servicing.acquire();
+            System.out.println("Customer " + custCount + " has been served");
             Door.release();
+            System.out.println("Customer " + custCount + " is leaving");
         } catch (Exception e) {
             System.out.println(e);
         }
