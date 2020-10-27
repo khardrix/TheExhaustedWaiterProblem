@@ -19,7 +19,7 @@ public class Waiter extends Thread {
             int sleepDuration = 50 + dice.nextInt(450);
             try{
                 if(!Nap.tryAcquire()) {
-                    System.out.println("Waiter is sleeping");
+                    System.out.println("Waiter is SLEEPING");
                     Nap.acquire();
                 }
                 System.out.println("Waiter is now awake");

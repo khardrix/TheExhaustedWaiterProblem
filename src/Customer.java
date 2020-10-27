@@ -23,7 +23,7 @@ public class Customer extends Thread {
             System.out.println("Customer attempting to enter restaurant");
             Door.acquire();
             System.out.println("Customer " + (custCount + 1) + " has entered restaurant and is seated");
-            System.out.println("Customer " + (custCount + 1) +  "is waiting for the waiter");
+            System.out.println("Customer " + (custCount + 1) +  " is waiting for the waiter");
             Nap.release();
             countmutex.acquire();
             custCount++;

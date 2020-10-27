@@ -1,9 +1,6 @@
 // IMPORTS of needed Java tools and olus-ins
-import javafx.scene.input.KeyCode;
-
 import java.util.*;
 import java.util.concurrent.Semaphore;
-import java.util.concurrent.TimeUnit;
 
 
 public class Driver {
@@ -23,7 +20,6 @@ public class Driver {
         Random randomNumberGenerator = new Random();
         int randomNumber = 0;
         Scanner scanner = new Scanner(System.in);
-
         Customer [] customer = new Customer[100];
 
 
@@ -41,10 +37,7 @@ public class Driver {
         Waiter waiter = new Waiter(Nap, Servicing);
 
         try {
-            // Waiter waiter = new Waiter(Nap, Servicing);
-
             waiter.start();
-
             Thread.sleep(1000);
         } catch (Exception e){
             System.out.println(e);
@@ -58,15 +51,15 @@ public class Driver {
         }
 
 
-
-
         // prompt user
         System.out.println("Press [ENTER] to start the \"slowtime\" simulation:");
         response = scanner.nextLine();
+        long waitTime = 50 + randomNumberGenerator.nextInt(450);
+        Thread.sleep(waitTime);
 
         for(int i = 50; i < 100; i++){
-            long waitTime = 50 + randomNumberGenerator.nextInt(450);
-            customer[i].wait(waitTime);
+            waitTime = 50 + randomNumberGenerator.nextInt(450);
+            Thread.sleep(waitTime);
             customer[i].start();
         }
 
