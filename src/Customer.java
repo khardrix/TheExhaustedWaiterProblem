@@ -7,6 +7,8 @@ public class Customer extends Thread {
     private volatile Semaphore Nap;
     private volatile Semaphore Servicing;
 
+    private static int custCount = 0;
+
     public Customer (Semaphore Nap, Semaphore Servicing, Semaphore Door, ThreadGroup threadGroup) {
         super(threadGroup, "customer");
         this.Nap = Nap;
