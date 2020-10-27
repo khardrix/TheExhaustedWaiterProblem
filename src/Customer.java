@@ -8,6 +8,7 @@ public class Customer extends Thread {
     private volatile Semaphore Servicing;
 
     private static int custCount = 0;
+    private static Semaphore countmutex = new Semaphore(1, true);
 
     public Customer (Semaphore Nap, Semaphore Servicing, Semaphore Door, ThreadGroup threadGroup) {
         super(threadGroup, "customer");
