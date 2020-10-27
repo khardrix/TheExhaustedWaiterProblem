@@ -1,3 +1,4 @@
+// IMPORTS of needed tools and plug-ins
 import java.lang.Thread;
 import java.util.Random;
 import java.util.concurrent.Semaphore;
@@ -22,7 +23,7 @@ public class Waiter extends Thread {
                     System.out.println("Waiter is SLEEPING");
                     Nap.acquire();
                 }
-                System.out.println("Waiter is now awake");
+                System.out.println("Waiter is now AWAKE");
                 customerServiced++;
                 sleep(sleepDuration);
                 Servicing.release();

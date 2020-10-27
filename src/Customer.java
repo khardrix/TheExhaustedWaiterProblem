@@ -1,3 +1,4 @@
+// IMPORTS of needed tools and plug-ins
 import java.lang.Thread;
 import java.util.concurrent.Semaphore;
 import java.lang.ThreadGroup;
@@ -23,8 +24,8 @@ public class Customer extends Thread {
             System.out.println("Customer attempting to enter restaurant");
             Door.acquire();
             System.out.println("Customer " + (custCount + 1) + " has entered restaurant and is seated");
-            System.out.println("Customer " + (custCount + 1) +  " is waiting for the waiter");
             Nap.release();
+            System.out.println("Customer " + (custCount + 1) +  " is waiting for the waiter");
             countmutex.acquire();
             custCount++;
             countmutex.release();

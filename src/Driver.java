@@ -1,4 +1,4 @@
-// IMPORTS of needed Java tools and olus-ins
+// IMPORTS of needed Java tools and plug-ins
 import java.util.*;
 import java.util.concurrent.Semaphore;
 
